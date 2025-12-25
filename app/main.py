@@ -1,4 +1,5 @@
-"""Example entrypoint for the applied-ai-service package."""
+#!/usr/bin/env python3
+"""Main entrypoint for the applied-ai-service application."""
 
 import argparse
 
