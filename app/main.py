@@ -1,19 +1,7 @@
-#!/usr/bin/env python3
-"""Main entrypoint for the applied-ai-service application."""
+from fastapi import FastAPI
 
-import argparse
+app = FastAPI()
 
-
-def main(argv=None):
-    parser = argparse.ArgumentParser(prog="applied-ai-service")
-    parser.add_argument("--demo", action="store_true", help="Run demo output")
-    args = parser.parse_args(argv)
-
-    if args.demo:
-        print("Applied AI Service — demo running")
-    else:
-        print("Applied AI Service — no action specified. Use --demo to run demo.")
-
-
-if __name__ == "__main__":
-    main()
+@app.get("/health")
+def health():
+    return {"status": "ok"}
