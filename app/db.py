@@ -120,3 +120,11 @@ def search_chunks(query_embedding: List[float], top_k: int = 4) -> List[str]:
 
     scored.sort(key=lambda t: t[0], reverse=True)
     return [c for _, c in scored[:top_k]]
+
+
+def get_counts() -> dict:
+    with get_conn() as conn:
+        messages = conn.execute("SELECT COUNT(*) FROM messages").fetchone()[0]
+        documents = conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
+        chunks = conn.execute("SELECT COUNT(*) FROM chunks").fetchone()[0]
+    return {"messages": int(messages), "documents": int(documents), "chunks": int(chunks)}
